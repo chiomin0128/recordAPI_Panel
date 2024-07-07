@@ -1,13 +1,23 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/lddpdNBW8De
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+import React, { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { login } from "/services/auth";
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const handleLogin = async () => {
+    try {
+      await login(email, password);
+      window.location.href = "/chat"; // 로그인 성공 시 채팅 페이지로 이동
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
     <div className="dark bg-background text-foreground min-h-[100dvh] flex items-center justify-center">
       <div className="w-full max-w-sm space-y-6">
@@ -16,6 +26,7 @@ export default function LoginPage() {
           <p className="text-muted-foreground">관리자 페이지</p>
         </div>
         <div className="space-y-4">
+          {error && <div className="text-red-500">{error}</div>}
           <div className="space-y-2">
             <Label htmlFor="email" className="text-foreground">
               Email
@@ -23,6 +34,8 @@ export default function LoginPage() {
             <Input
               id="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="bg-muted text-foreground"
               required
             />
@@ -36,11 +49,13 @@ export default function LoginPage() {
             <Input
               id="password"
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="bg-muted text-foreground"
               required
             />
           </div>
-          <Button type="submit" className="w-full">
+          <Button onClick={handleLogin} className="w-full">
             로그인
           </Button>
         </div>
