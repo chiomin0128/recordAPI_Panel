@@ -1,24 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
-import { logout } from "/services/auth";
+import { logout } from "@/services/auth";
 import Header from "@/components/layout/header";
 import ChatList from "@/components/layout/chatlist";
 
 export default function Component() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  
 
   return (
     <div

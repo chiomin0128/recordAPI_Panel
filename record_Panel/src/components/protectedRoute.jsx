@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { isAuthenticated } from "/services/auth";
+import { isAuthenticated } from "@/services/auth";
 
 const ProtectedRoute = ({ children }) => {
   if (!isAuthenticated()) {

@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { login } from "/services/auth";
+import { login, isAuthenticated } from "@/services/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/chat");
+    }
+  }, [navigate]);
 
   const handleLogin = async () => {
     try {
       await login(email, password);
-      window.location.href = "/chat"; // 로그인 성공 시 채팅 페이지로 이동
+      navigate("/chat");
     } catch (err) {
       setError(err.message);
     }
@@ -59,7 +67,7 @@ export default function LoginPage() {
             로그인
           </Button>
         </div>
-        <div className="text-center text-sm ">
+        <div className="text-center text-sm">
           관리자 신청
           <p className="text-muted-foreground">chiomin0128@gmail.com</p>
         </div>

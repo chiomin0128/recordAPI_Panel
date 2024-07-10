@@ -11,8 +11,8 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { logout } from "/services/auth";
-import { getUserInfo } from "/services/user";
+import { logout } from "@/services/auth";
+import { getUserInfo } from "@/services/user";
 
 function Header() {
   const [user, setUser] = useState(null);
@@ -28,7 +28,7 @@ function Header() {
     };
 
     fetchUser();
-  }, []);
+  }, []); // 빈 배열을 두 번째 인자로 전달하여 컴포넌트가 처음 마운트될 때만 실행되도록 설정
 
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b bg-card px-4 sm:px-6">

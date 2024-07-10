@@ -20,7 +20,7 @@ instance.interceptors.request.use(
     }
 );
 
-// 응답 인터셉터를 설정하여 401 오류가 발생하면 토큰을 갱신합니다.
+// 응답 인터셉터를 설정하여 403 오류가 발생하면 토큰을 갱신합니다.
 instance.interceptors.response.use(
     response => {
         return response;
@@ -31,8 +31,10 @@ instance.interceptors.response.use(
             originalRequest._retry = true;
             try {
                 const newToken = await refreshToken();
+                console.log("two")
                 Cookies.set('accessToken', newToken.access);
                 instance.defaults.headers.common['Authorization'] = `Bearer ${newToken.access}`;
+                originalRequest.headers['Authorization'] = `Bearer ${newToken.access}`;
                 return instance(originalRequest);
             } catch (e) {
                 return Promise.reject(e);
@@ -45,6 +47,7 @@ instance.interceptors.response.use(
 // 토큰을 갱신하는 함수입니다.
 const refreshToken = async () => {
     try {
+        console.log("one")
         const response = await axios.post('http://127.0.0.1:8000/API/auth/refresh/', {
             refresh: Cookies.get('refreshToken')
         });
