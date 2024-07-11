@@ -31,7 +31,6 @@ instance.interceptors.response.use(
             originalRequest._retry = true;
             try {
                 const newToken = await refreshToken();
-                console.log("two")
                 Cookies.set('accessToken', newToken.access);
                 instance.defaults.headers.common['Authorization'] = `Bearer ${newToken.access}`;
                 originalRequest.headers['Authorization'] = `Bearer ${newToken.access}`;

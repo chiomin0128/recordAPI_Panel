@@ -11,8 +11,7 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { logout } from "@/services/auth";
-import { getUserInfo } from "@/services/user";
+import { logout, getUserInfo } from "@/services/member";
 
 function Header() {
   const [user, setUser] = useState(null);

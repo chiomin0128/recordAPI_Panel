@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { login, isAuthenticated } from "@/services/auth";
+import { login, isAuthenticated } from "@/services/member";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {

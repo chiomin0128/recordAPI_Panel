@@ -3,8 +3,8 @@ import LoginPage from "./pages/LoginPage";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import ChatPage from "./pages/ChatPage";
 import ProtectedRoute from "./components/protectedRoute";
-import { isAuthenticated } from "./services/auth";
 import NotFound from "./pages/NotFound";
+import { isAuthenticated } from "@/services/member";
 
 function App() {
   const isAuth = isAuthenticated();

@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
-import { logout } from "@/services/auth";
 import Header from "@/components/layout/header";
 import ChatList from "@/components/layout/chatlist";
+
 
 export default function Component() {
   const [isDarkMode, setIsDarkMode] = useState(false);
