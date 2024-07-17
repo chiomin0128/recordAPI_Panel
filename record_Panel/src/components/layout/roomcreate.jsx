@@ -4,6 +4,8 @@ import {
     DialogTitle,
     DialogDescription,
     DialogFooter,
+    Dialog,
+    DialogTrigger
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -51,6 +53,10 @@ export default function RoomCreate() {
     };
 
     return (
+        <Dialog>
+        <DialogTrigger asChild className="col-span-3">
+        <Button variant="outline">AI 설정</Button>
+        </DialogTrigger>
         <DialogContent className="sm:max-w-[1035px] max-h-[90vh] overflow-y-auto">
             <DialogHeader>
                 <DialogTitle>채팅방 생성</DialogTitle>
@@ -247,5 +253,7 @@ export default function RoomCreate() {
                 </DialogFooter>
             </form>
         </DialogContent>
+        </Dialog>
+
     );
 }

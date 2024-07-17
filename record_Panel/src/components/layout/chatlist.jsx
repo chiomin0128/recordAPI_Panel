@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import RoomCreate from "./roomcreate";
+import Chatcreate from "./chatcreate";
+
 
 function ChatList() {
     return (
@@ -16,7 +17,7 @@ function ChatList() {
                             <PlusIcon className="h-5 w-5" />
                         </Button>
                     </DialogTrigger>
-                    <RoomCreate />
+                    <Chatcreate />
                 </Dialog>
             </div>
             <div className="flex-1 overflow-auto">
