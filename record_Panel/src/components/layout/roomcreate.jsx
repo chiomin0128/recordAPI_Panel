@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { createUserSettings } from "@/services/chat";
+import APIUtils from "@/services/chat";
 
 export default function RoomCreate() {
     const [formData, setFormData] = useState({
@@ -44,7 +44,7 @@ export default function RoomCreate() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await createUserSettings(formData);
+            const response = await APIUtils.userSettings(true, formData);
             console.log(response); // 성공 시 서버 응답 데이터 출력
             // 필요 시 추가적인 성공 처리 로직 추가
         } catch (error) {
