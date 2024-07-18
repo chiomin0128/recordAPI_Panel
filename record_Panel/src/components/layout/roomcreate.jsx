@@ -1,3 +1,4 @@
+import React from "react";
 import {
     DialogContent,
     DialogHeader,
@@ -5,7 +6,8 @@ import {
     DialogDescription,
     DialogFooter,
     Dialog,
-    DialogTrigger
+    DialogTrigger,
+    DialogClose,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -32,6 +34,7 @@ export default function RoomCreate() {
         language_dialect: "",
         mood_adaptability: "",
     });
+    const [open, setOpen] = React.useState(false)
 
     const handleChange = (e) => {
         const { id, value, type, checked } = e.target;
@@ -44,16 +47,15 @@ export default function RoomCreate() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await APIUtils.userSettings(true, formData);
-            console.log(response); // 성공 시 서버 응답 데이터 출력
+            const response = await APIUtils.userSettings(false, formData);
             // 필요 시 추가적인 성공 처리 로직 추가
+            setOpen(false); // 다이얼로그 닫
         } catch (error) {
             console.error(error); // 에러 처리 로직
         }
     };
-
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild className="col-span-3">
         <Button variant="outline">AI 설정</Button>
         </DialogTrigger>
@@ -249,7 +251,9 @@ export default function RoomCreate() {
                 </div>
                 
                 <DialogFooter>
-                    <Button type="submit">채팅방 생성</Button>
+                    <DialogClose asChild>
+                        <Button type="submit" onClick={handleSubmit} variant="secondary">채팅방 생성</Button>
+                    </DialogClose>
                 </DialogFooter>
             </form>
         </DialogContent>
