@@ -24,6 +24,7 @@ import APIUtils from "@/services/chat";
 
 export default function ChatCreate() {
     const [settings, setSettings] = useState([]);
+    const [selectedSetting, setSelectedSetting] = useState(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     useEffect(() => {
@@ -43,9 +44,7 @@ export default function ChatCreate() {
 
     const handleCreateSettings = async () => {
         try {
-            const newSettings = { /* 새 설정 값들 */ };
-            const data = await APIUtils.userSettings(false, newSettings);
-            console.log('Settings created:', data);
+            const data = await APIUtils.ChatRoom(false, selectedSetting);
         } catch (error) {
             console.error('Error creating settings:', error);
         }
@@ -69,7 +68,7 @@ export default function ChatCreate() {
                         <Label htmlFor="settings" className="text-right">
                             설정 값
                         </Label>
-                        <Select>
+                        <Select onValueChange={(value) => setSelectedSetting(value)}>
                             <SelectTrigger className="col-span-3">
                                 <SelectValue placeholder="설정을 선택하세요" />
                             </SelectTrigger>
